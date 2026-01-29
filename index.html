@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEKIRO: Shadows Die Twice</title>
+    <meta name="description" content="Experience the tale of the lone wolf in this immersive Sekiro journey">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;900&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Liquid Glass Logo -->
+    <div id="logo" class="liquid-glass-logo">
+        <h1>SEKIRO</h1>
+        <div class="subtitle">影は二度死ぬ</div>
+    </div>
+
+    <!-- Fire Effect Button -->
+    <button id="fire-toggle" class="fire-button" aria-label="Toggle fire effect">
+        <span class="fire-icon">🔥</span>
+    </button>
+
+    <!-- Fire Canvas -->
+    <canvas id="fire-canvas"></canvas>
+
+    <!-- Dashboard/Menu -->
+    <div id="dashboard" class="dashboard active">
+        <div class="dashboard-bg"></div>
+        <div class="dashboard-content">
+            <div class="kanji-bg">隻狼</div>
+            <h1 class="game-title">
+                <span class="title-main">SEKIRO</span>
+                <span class="title-sub">Shadows Die Twice</span>
+            </h1>
+            <nav class="main-menu">
+                <button id="start-btn" class="menu-item">
+                    <span class="menu-label">始</span>
+                    <span class="menu-text">START</span>
+                </button>
+                <button class="menu-item">
+                    <span class="menu-label">設</span>
+                    <span class="menu-text">SETTINGS</span>
+                </button>
+            </nav>
+            <div class="menu-decoration">
+                <div class="decoration-line"></div>
+                <div class="decoration-symbol">卍</div>
+                <div class="decoration-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sword Slash Transition -->
+    <div id="slash-transition" class="slash-transition">
+        <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="slashGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#808080;stop-opacity:0.8" />
+                </linearGradient>
+            </defs>
+            <path id="slash-path" d="M0,0 L0,1080 L1920,1080 L1920,0 Z" fill="url(#slashGradient)" opacity="0"/>
+        </svg>
+    </div>
+
+    <!-- Main Story Content -->
+    <main id="story-container" class="story-container">
+        <!-- Phase 1: Opening -->
+        <section class="story-phase" id="phase-1" data-bg="lone-wolf">
+            <div class="phase-content">
+                <div class="japanese-quote">隻狼 - The Lone Wolf</div>
+                <h2 class="phase-title">The Beginning</h2>
+                <p class="story-text">
+                    In the waning years of the Sengoku period, a nameless shinobi serves his young lord with unwavering loyalty.
+                    Bound by an iron code, he is known only as... <strong>Wolf</strong>.
+                </p>
+                <p class="story-text">
+                    When his lord is taken, and his arm severed, the wolf awakens to find a second chance.
+                    A prosthetic arm. A new purpose. But death... death is merely the beginning.
+                </p>
+                <div class="blood-splatter small"></div>
+            </div>
+        </section>
+
+        <!-- Phase 2: The Iron Code -->
+        <section class="story-phase" id="phase-2" data-bg="ashina">
+            <div class="phase-content">
+                <div class="japanese-quote">忠義 - Loyalty</div>
+                <h2 class="phase-title">The Iron Code</h2>
+                <p class="story-text">
+                    "A shinobi would know the difference between honor and victory."
+                </p>
+                <p class="story-text">
+                    The path ahead is treacherous. Ashina Castle stands tall, occupied by enemies both mortal and divine.
+                    To rescue the Divine Heir, one must become death itself.
+                </p>
+                <blockquote class="wisdom">
+                    "Hesitation is defeat" - Isshin Ashina
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Phase 3: Genichiro -->
+        <section class="story-phase boss-phase" id="phase-3" data-bg="genichiro">
+            <div class="phase-content">
+                <div class="boss-label">BOSS ENCOUNTER</div>
+                <div class="japanese-quote">源一郎 - Genichiro</div>
+                <h2 class="phase-title">Way of Tomoe</h2>
+                <p class="story-text">
+                    Lightning crackles across the sky as blades meet atop Ashina Castle.
+                    Genichiro Ashina, desperate to save his homeland, wields the power of lightning itself.
+                </p>
+                <p class="story-text">
+                    The Dance of the Dragonflash begins. Steel rings. Blood flows.
+                </p>
+                <div class="blood-splatter large"></div>
+            </div>
+        </section>
+
+        <!-- Phase 4: Guardian Ape -->
+        <section class="story-phase boss-phase" id="phase-4" data-bg="ape">
+            <div class="phase-content">
+                <div class="boss-label">BOSS ENCOUNTER</div>
+                <div class="japanese-quote">猿 - The Guardian Ape</div>
+                <h2 class="phase-title">The Undying Terror</h2>
+                <p class="story-text">
+                    Deep within the Sunken Valley, a beast of immortal flesh guards the path forward.
+                    The Guardian Ape, massive and relentless, knows no death.
+                </p>
+                <p class="story-text">
+                    Even beheaded, the terror continues. For in this cursed land, death is but a suggestion.
+                </p>
+                <div class="blood-splatter large"></div>
+                <div class="blood-splatter medium"></div>
+            </div>
+        </section>
+
+        <!-- Phase 5: The Choice -->
+        <section class="story-phase choice-phase" id="phase-5" data-bg="choice">
+            <div class="phase-content">
+                <div class="japanese-quote">選択 - The Choice</div>
+                <h2 class="phase-title">The Path Diverges</h2>
+                <p class="story-text">
+                    The moment of truth arrives. Two paths lie before you, each leading to a different fate.
+                    Will you follow the iron code, or embrace the demon within?
+                </p>
+                <div class="choice-container">
+                    <button class="choice-btn" data-ending="shura">
+                        <span class="choice-label">修羅</span>
+                        <span class="choice-title">SHURA</span>
+                        <span class="choice-desc">Embrace the demon</span>
+                    </button>
+                    <button class="choice-btn" data-ending="severance">
+                        <span class="choice-label">不死断ち</span>
+                        <span class="choice-title">IMMORTAL SEVERANCE</span>
+                        <span class="choice-desc">Break the cycle</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shura Ending -->
+        <section class="story-phase ending-phase" id="ending-shura" data-bg="shura" style="display: none;">
+            <div class="phase-content">
+                <div class="japanese-quote">修羅 - Demon of Hatred</div>
+                <h2 class="phase-title shura-title">The Shura Ending</h2>
+                <p class="story-text">
+                    The iron code... broken. The demon within... unleashed.
+                </p>
+                <p class="story-text">
+                    Flames consume all. Master, father figure, homeland... all fall before the blade of Shura.
+                    The wolf becomes the demon, forever trapped in a cycle of carnage and bloodlust.
+                </p>
+                <p class="story-text tragic">
+                    "You chose the path of carnage. There is no return from Shura."
+                </p>
+                <div class="blood-splatter large"></div>
+                <div class="blood-splatter large" style="left: 70%;"></div>
+                <div class="blood-splatter medium"></div>
+            </div>
+        </section>
+
+        <!-- Immortal Severance Ending -->
+        <section class="story-phase ending-phase" id="ending-severance" data-bg="severance" style="display: none;">
+            <div class="phase-content">
+                <div class="boss-label">FINAL ENCOUNTER</div>
+                <div class="japanese-quote">一心 - Isshin, The Sword Saint</div>
+                <h2 class="phase-title">The Immortal Severance</h2>
+                <p class="story-text">
+                    From the Divine Heir's blood emerges a legend - Isshin Ashina in his prime.
+                    The Sword Saint. The man who built Ashina with his blade.
+                </p>
+                <p class="story-text">
+                    In a field of flowers, under a crimson sky, the greatest duel begins.
+                    Master and student. Past and future. One final dance.
+                </p>
+                <blockquote class="wisdom">
+                    "Pitiful grandchild... This was the only way."
+                </blockquote>
+                <p class="story-text">
+                    With the Sword Saint fallen, the curse is severed. The Divine Heir's immortality... cut.
+                    The young lord departs to the West, carrying hope for a new beginning.
+                </p>
+                <p class="story-text final">
+                    The wolf stands alone once more, having fulfilled his duty. 
+                    The shadows have died twice, and the land may finally know peace.
+                </p>
+                <div class="blood-splatter large"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
